@@ -106,36 +106,33 @@ int main(){
 			ans[q[i].qnum]=0;
 			continue;
 		}
-        
 		while(e<q[i].re){
-        	++e;
-        	add(e%k, a[e]);
-        	updans(e%k, s, e);
-        }
-
+			++e;
+			add(e%k, a[e]);
+			updans(e%k, s, e);
+		}
 		while(s>q[i].fr){
 			--s;
 			add(s%k, a[s]);
 			updans(s%k, s, e);
 			cur[s%k] = a[s-k];
 			updans(s%k, s, e);
-        }
-        while(e>q[i].re){
-        	del(e%k, a[e]);
-        	updans(e%k,s,e-1);
-            e--;
-        }
-
-        while(s<q[i].fr){
-        	del(s%k, a[s]);
-        	updans(s%k, s+1,e);
-        	cur[s%k] = a[s];
-        	updans(s%k, s+1,e);
-            s++;
-        }
-
-        ans[q[i].qnum] = cans;
+		}
+		while(e>q[i].re){
+			del(e%k, a[e]);
+			updans(e%k,s,e-1);
+			e--;
+		}
+		while(s<q[i].fr){
+			del(s%k, a[s]);
+			updans(s%k, s+1,e);
+			cur[s%k] = a[s];
+			updans(s%k, s+1,e);
+			s++;
+		}
+		ans[q[i].qnum] = cans;
 	}
+
 	for(int i=0;i<Q;i++){
 		cout<<ans[i]<<'\n';
 	}
